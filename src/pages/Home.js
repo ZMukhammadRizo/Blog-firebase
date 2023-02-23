@@ -19,6 +19,11 @@ const Home = ({ isAuth }) => {
     getPosts()
   }, [deletePost])
 
+  const confirmDelete = (id) => {
+    if (window.confirm("Are you sure to delete this post?")) {
+      deletePost(id)
+    }
+  }
   return (
     <div className="homePage">
       {postLists.map((post) => {
@@ -32,7 +37,7 @@ const Home = ({ isAuth }) => {
                 {isAuth && post.author.id === auth.currentUser.uid && (
                   <button
                     onClick={() => {
-                      deletePost(post.id)
+                      confirmDelete(post.id)
                     }}
                   >
                     &#128465;
